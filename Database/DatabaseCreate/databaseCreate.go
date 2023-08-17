@@ -43,7 +43,7 @@ func DbCreate() {
 	name := database_name_name()
 	code := database_name_code()
 
-	tableName := fmt.Sprintf("%s_%s_%s", name, code, time.Format("20060102150405"))
+	tableName := fmt.Sprintf("%s%s_%s_%s", "h", code, name, time.Format("20060102150405"))
 
 	query := fmt.Sprintf("CREATE TABLE \"%s\" (id SERIAL PRIMARY KEY, data TEXT)", tableName)
 	_, err = db.Exec(query)

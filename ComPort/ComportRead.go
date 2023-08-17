@@ -1,0 +1,5 @@
+package ComPort
+
+func ReadComPort() {
+
+}
