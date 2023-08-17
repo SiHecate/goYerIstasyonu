@@ -2,12 +2,17 @@ package databaseCreate
 
 import (
 	"fmt"
-	"strings"
 	"time"
 	"yeristasyonu/Database/DatabaseConnection"
 
 	_ "github.com/lib/pq"
 )
+
+var createdTableName string
+
+func GetCreatedTableName() string {
+	return createdTableName
+}
 
 func database_name_time() time.Time {
 	return time.Now()
@@ -33,25 +38,21 @@ func database_name_code() string {
 
 func DbCreate() {
 	db, err := DatabaseConnection.DatabaseConnect()
-	if err != nil {
-		fmt.Println("Error connecting to the database:", err)
-		return
-	}
 
 	time := database_name_time()
 	name := database_name_name()
 	code := database_name_code()
 
-	nameWithoutSpaces := strings.ReplaceAll(name, " ", "_")
+	tableName := fmt.Sprintf("%s_%s_%s", name, code, time.Format("20060102150405"))
 
-	tableName := fmt.Sprintf("%s_%s_%s", code, nameWithoutSpaces, time.Format("20060102150405"))
-
-	query := fmt.Sprintf("CREATE TABLE \"%s\" (id SERIAL PRIMARY KEY, name TEXT)", tableName)
+	query := fmt.Sprintf("CREATE TABLE \"%s\" (id SERIAL PRIMARY KEY, data TEXT)", tableName)
 	_, err = db.Exec(query)
 	if err != nil {
 		fmt.Println("Error creating table:", err)
 		return
 	}
+
+	createdTableName = tableName
 
 	fmt.Printf("Table created with name: %s\n", tableName)
 }
