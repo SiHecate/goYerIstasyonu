@@ -1,15 +1,12 @@
 package ComPort
 
 import (
-	"log"
-
 	"github.com/tarm/serial"
 )
 
 var SerialPort *serial.Port
 
-func ConnectComPort() {
-
+func ConnectComPort() error {
 	c := &serial.Config{
 		Name: "COM3",
 		Baud: 9600,
@@ -17,9 +14,8 @@ func ConnectComPort() {
 
 	s, err := serial.OpenPort(c)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
-	defer s.Close()
-
 	SerialPort = s
+	return nil
 }

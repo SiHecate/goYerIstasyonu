@@ -3,7 +3,6 @@ package ComPort
 import (
 	"fmt"
 	"log"
-	connect "yeristasyonu/ComPort/ConnectComPort"
 	"yeristasyonu/Database/DatabaseConnection"
 	databaseCreate "yeristasyonu/Database/DatabaseCreate"
 )
@@ -13,9 +12,14 @@ func ComRead() {
 	databaseCreate.DbCreate()
 	tableName := databaseCreate.GetCreatedTableName()
 
+	if err := ConnectComPort(); err != nil {
+		log.Fatal(err) // Olası bir hata için log yazdırma
+	}
+	defer SerialPort.Close()
+
 	for {
-		buf := make([]byte, 128)               // Max data
-		n, err := connect.SerialPort.Read(buf) // Seri portu kullanarak okuma
+		buf := make([]byte, 256) // Max data
+		n, err := SerialPort.Read(buf)
 		if err != nil {
 			log.Fatal(err)
 		}

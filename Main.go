@@ -2,7 +2,7 @@
 package main
 
 import (
-	ReadCom "yeristasyonu/ComPort/ComPortRead"
+	ReadCom "yeristasyonu/ComPort"
 
 	_ "github.com/lib/pq"
 )
