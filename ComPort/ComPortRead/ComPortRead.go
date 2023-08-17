@@ -3,32 +3,19 @@ package ComPort
 import (
 	"fmt"
 	"log"
+	connect "yeristasyonu/ComPort/ConnectComPort"
 	"yeristasyonu/Database/DatabaseConnection"
 	databaseCreate "yeristasyonu/Database/DatabaseCreate"
-
-	"github.com/tarm/serial"
 )
 
-func ConnectComPort() {
-
-	c := &serial.Config{
-		Name: "COM3",
-		Baud: 9600,
-	}
-
-	s, err := serial.OpenPort(c)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer s.Close()
-
+func ComRead() {
 	db, _ := DatabaseConnection.DatabaseConnect()
 	databaseCreate.DbCreate()
 	tableName := databaseCreate.GetCreatedTableName()
 
 	for {
-		buf := make([]byte, 128) // Max data
-		n, err := s.Read(buf)
+		buf := make([]byte, 128)               // Max data
+		n, err := connect.SerialPort.Read(buf) // Seri portu kullanarak okuma
 		if err != nil {
 			log.Fatal(err)
 		}

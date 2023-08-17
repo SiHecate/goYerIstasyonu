@@ -1,5 +1,0 @@
-package ComPort
-
-func ReadComPort() {
-
-}

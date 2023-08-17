@@ -2,11 +2,11 @@
 package main
 
 import (
-	comport "yeristasyonu/ComPort"
+	ReadCom "yeristasyonu/ComPort/ComPortRead"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	comport.ConnectComPort()
+	ReadCom.ComRead()
 }
