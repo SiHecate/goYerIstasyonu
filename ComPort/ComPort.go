@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"yeristasyonu/Database/DatabaseConnection"
+	databaseCreate "yeristasyonu/Database/DatabaseCreate"
 
 	"github.com/tarm/serial"
 )
@@ -36,7 +37,7 @@ func ConnectComPort() {
 		if err != nil {
 			log.Fatal(err)
 		}
-
+		newDatabase := databaseCreate.DbCreate()
 		data := string(buf[:n])
 		_, err = db.Exec("INSERT INTO data_table (data) VALUES ($1)", data)
 		if err != nil {

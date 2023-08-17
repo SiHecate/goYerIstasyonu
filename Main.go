@@ -2,14 +2,11 @@
 package main
 
 import (
-	"yeristasyonu/ComPort"
-	"yeristasyonu/Database/DatabaseConnection"
+	databaseCreate "yeristasyonu/Database/DatabaseCreate"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	DatabaseConnection.DatabaseConnect()
-	ComPort.ConnectComPort()
-
+	databaseCreate.DbCreate()
 }
