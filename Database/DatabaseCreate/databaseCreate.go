@@ -1,9 +1,9 @@
-package databaseCreate
+package Database
 
 import (
 	"fmt"
 	"time"
-	"yeristasyonu/Database/DatabaseConnection"
+	DatabaseConnection "yeristasyonu/Database/DatabaseConnection"
 
 	_ "github.com/lib/pq"
 )

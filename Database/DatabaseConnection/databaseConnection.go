@@ -1,5 +1,5 @@
 // DatabaseConnection paketi
-package DatabaseConnection
+package Database
 
 import (
 	"database/sql"
