@@ -13,7 +13,7 @@ func ComRead() {
 	tableName := databaseCreate.GetCreatedTableName()
 
 	if err := ConnectComPort(); err != nil {
-		log.Fatal(err) // Olası bir hata için log yazdırma
+		log.Fatal(err)
 	}
 	defer SerialPort.Close()
 
