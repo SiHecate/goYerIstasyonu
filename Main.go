@@ -2,11 +2,11 @@
 package main
 
 import (
-	Com "yeristasyonu/ComPort"
+	Database "yeristasyonu/Database/DatabaseList"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	Com.ComWrite()
+	Database.DbList()
 }

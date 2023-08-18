@@ -3,7 +3,7 @@ package ComPort
 import (
 	"fmt"
 	"log"
-	"yeristasyonu/Database/DatabaseConnection"
+	DatabaseConnection "yeristasyonu/Database/DatabaseConnection"
 	databaseCreate "yeristasyonu/Database/DatabaseCreate"
 )
 

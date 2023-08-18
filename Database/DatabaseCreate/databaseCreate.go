@@ -48,7 +48,7 @@ func DbCreate() {
 	query := fmt.Sprintf("CREATE TABLE \"%s\" (id SERIAL PRIMARY KEY, data TEXT)", tableName)
 	_, err = db.Exec(query)
 	if err != nil {
-		fmt.Println("Error creating table:", err)
+		fmt.Println(err)
 		return
 	}
 
